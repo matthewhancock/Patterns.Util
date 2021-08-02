@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns.Util.Mapping.UnitT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BenchmarkTests", "BenchmarkTests", "{0B05DC39-7909-451B-AA61-0D1D17838873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns.Util.Mapping.BenchmarkTests", "Tests\BenchmarksTests\Patterns.Util.Mapping.BenchmarkTests\Patterns.Util.Mapping.BenchmarkTests.csproj", "{78A3A5DB-412E-42A3-9E33-CAC284EB4B81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns.Util.Mapping.BenchmarkTests", "Tests\BenchmarkTests\Patterns.Util.Mapping.BenchmarkTests\Patterns.Util.Mapping.BenchmarkTests.csproj", "{78A3A5DB-412E-42A3-9E33-CAC284EB4B81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
