@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <!-- Packaging -->
+  <PropertyGroup>
+    <Authors>Matthew Hancock</Authors>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <PackageDescription>NuGet Package: $(MSBuildProjectName)</PackageDescription>
+    <RepositoryUrl>https://github.com/matthewhancock/Patterns.Util</RepositoryUrl>
+  </PropertyGroup>
+  
+  <!-- Versioning -->
+  <PropertyGroup>
+    <!-- Variables -->
+    <VersionMajor Condition=" '$(VersionMajor)' == '' ">0</VersionMajor>
+    <VersionMinor Condition=" '$(VersionMinor)' == '' ">0</VersionMinor>
+    <VersionBuild Condition=" '$(VersionBuild)' == '' ">$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2020,1,1))).get_TotalDays())</VersionBuild>
+    <VersionRevision Condition=" '$(VersionRevision)' == '' ">$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</VersionRevision>
+    <VersionBranch Condition=" '$(Branch)' != '' and '$(Branch)' != 'main' ">$([System.String]::Copy('$(Branch)').Replace('/','-').Replace('\','-').Replace('.','-'))</VersionBranch>
+
+    <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</VersionPrefix>
+    <VersionSuffix>$(VersionBranch)</VersionSuffix>
+  </PropertyGroup>
+</Project>
