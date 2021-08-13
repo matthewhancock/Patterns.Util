@@ -48,6 +48,7 @@ jobs:
       with:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
+        nuget-apikey: ${{ secrets.NUGET }}
   
   package-mapping:
     name: Publish Patterns.Util.Mapping
@@ -61,3 +62,4 @@ jobs:
         project: Patterns.Util.Mapping
         path-project: Patterns.Util.Mapping
         path-tests-unit: Tests\UnitTests\Patterns.Util.Mapping.UnitTests
+        nuget-apikey: ${{ secrets.NUGET }}
