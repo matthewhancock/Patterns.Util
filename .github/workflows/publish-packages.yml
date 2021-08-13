@@ -58,7 +58,7 @@ jobs:
         echo 'Branch: ${{ needs.setup.outputs.commit-branch }}'
     
     - name: Publish Patterns.Util.SourceGenerators
-      uses: matthewhancock/actions-patterns-publish-project@main
+      uses: matthewhancock/actions-patterns-publish-project@v.1
       with:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
@@ -73,7 +73,7 @@ jobs:
     
     steps:
     - name: Publish Patterns.Util.Mapping
-      uses: matthewhancock/actions-patterns-publish-project@main
+      uses: matthewhancock/actions-patterns-publish-project@v.1
       with:
         project: Patterns.Util.Mapping
         path-project: Patterns.Util.Mapping
