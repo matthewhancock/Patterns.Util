@@ -45,7 +45,7 @@ jobs:
     
     steps:
     - name: Publish Patterns.Util.SourceGenerators
-      uses: matthewhancock/actions-patterns-publish-project@v.2
+      uses: matthewhancock/actions-patterns-publish-project@V.2
       with:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
@@ -60,7 +60,7 @@ jobs:
     
     steps:
     - name: Publish Patterns.Util.Mapping
-      uses: matthewhancock/actions-patterns-publish-project@v.2
+      uses: matthewhancock/actions-patterns-publish-project@V.2
       with:
         project: Patterns.Util.Mapping
         path-project: Patterns.Util.Mapping
