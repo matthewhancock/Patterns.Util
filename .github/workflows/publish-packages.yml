@@ -15,7 +15,7 @@ jobs:
 
     - id: output-files
       name: Set Modified Files to env
-      run:  echo "COMMIT_FILES=${steps.files.outputs.all}" >> $GITHUB_ENV
+      run:  echo "COMMIT_FILES=${{ steps.files.outputs.all }}" >> $GITHUB_ENV
       
     - name: Checkout
       uses: actions/checkout@v2
