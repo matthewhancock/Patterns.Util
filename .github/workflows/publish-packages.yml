@@ -5,25 +5,27 @@ on: [push, pull_request]
 jobs:
   setup:
     runs-on: ubuntu-latest
-      
+    
+    outputs:
+      commit-branch: ${{ steps.branch.outputs.branch }}
+      commit-files: ${{ steps.files.outputs.all }}
+          
     steps:
     - id: files
       name: Get Changed Files
       uses: jitterbit/get-changed-files@v1
       with:
         format: 'csv'
-
-    - id: output-files
-      name: Set Modified Files to env
-      run:  echo "COMMIT_FILES=${{ steps.files.outputs.all }}" >> $GITHUB_ENV
       
     - name: Checkout
       uses: actions/checkout@v2
     
-    - name: Parse Branch
+    - id: branch
+      name: Parse Branch
       run: |
         FULL_BRANCH_PATH="${{ github.ref }}"
         echo "BRANCH=${FULL_BRANCH_PATH/refs\/heads\//}" >> $GITHUB_ENV
+        echo "::set-output name=branch::${{ env.BRANCH }}"
         
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -49,8 +51,8 @@ jobs:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ needs.setup.env.BRANCH }}
-        env-commit-files: ${{ needs.setup.env.COMMIT_FILES }}
+        env-commit-branch: ${{ needs.setup.outputs.commit-branch }}
+        env-commit-files: ${{ needs.setup.outputs.commit-files }}
   
   package-mapping:
     name: Publish Patterns.Util.Mapping
@@ -65,5 +67,5 @@ jobs:
         path-project: Patterns.Util.Mapping
         path-tests-unit: Tests\UnitTests\Patterns.Util.Mapping.UnitTests
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ needs.setup.env.BRANCH }}
-        env-commit-files: ${{ needs.setup.env.COMMIT_FILES }}
+        env-commit-branch: ${{ needs.setup.outputs.commit-branch }}
+        env-commit-files: ${{ needs.setup.outputs.commit-files }}
