@@ -38,6 +38,12 @@ jobs:
     
     - name: Build
       run: dotnet build --configuration Release /p:Branch=$BRANCH
+      
+    - name: Echo
+      run: |
+        echo 'Files: ${{ steps.files.outputs.all }}'
+        echo 'Branch: ${{ steps.branch.outputs.branch }}'
+        
     
   package-source-generators:
     name: Publish Patterns.Util.SourceGenerators
@@ -45,7 +51,11 @@ jobs:
     needs: setup
     
     steps:
-    - run: echo ${{ needs.setup.outputs.commit-branch }}
+      
+    - name: Echo
+      run: |
+        echo 'Files: ${{ needs.setup.outputs.commit-files }}'
+        echo 'Branch: ${{ needs.setup.outputs.commit-branch }}'
     
     - name: Publish Patterns.Util.SourceGenerators
       uses: matthewhancock/actions-patterns-publish-project@main
