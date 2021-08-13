@@ -49,8 +49,8 @@ jobs:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ env.BRANCH }}
-        env-commit-files: ${{ env.COMMIT_FILES }}
+        env-commit-branch: ${{ needs.setup.env.BRANCH }}
+        env-commit-files: ${{ needs.setup.env.COMMIT_FILES }}
   
   package-mapping:
     name: Publish Patterns.Util.Mapping
@@ -65,5 +65,5 @@ jobs:
         path-project: Patterns.Util.Mapping
         path-tests-unit: Tests\UnitTests\Patterns.Util.Mapping.UnitTests
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ env.BRANCH }}
-        env-commit-files: ${{ env.COMMIT_FILES }}
+        env-commit-branch: ${{ needs.setup.env.BRANCH }}
+        env-commit-files: ${{ needs.setup.env.COMMIT_FILES }}
