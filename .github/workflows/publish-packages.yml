@@ -40,6 +40,7 @@ jobs:
     
     - name: Publish Patterns.Util.SourceGenerators
       uses: matthewhancock/actions-patterns-publish-project@v.3
+      continue-on-error: true
       with:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
@@ -49,6 +50,7 @@ jobs:
   
     - name: Publish Patterns.Util.Mapping
       uses: matthewhancock/actions-patterns-publish-project@v.3
+      continue-on-error: true
       with:
         project: Patterns.Util.Mapping
         path-project: Patterns.Util.Mapping
