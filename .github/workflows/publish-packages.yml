@@ -1,0 +1,63 @@
+name: Publish Packages
+  
+on: [push, pull_request]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - id: files
+      name: Get Changed Files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'csv'
+
+    - id: output-files
+      name: Set Modified Files to env
+      run:  echo "COMMIT_FILES=${steps.files.outputs.all}" >> $GITHUB_ENV
+      
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Parse Branch
+      run: |
+        FULL_BRANCH_PATH="${{ github.ref }}"
+        echo "BRANCH=${FULL_BRANCH_PATH/refs\/heads\//}" >> $GITHUB_ENV
+        
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        include-prerelease: true
+    
+    - name: Install dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --configuration Release /p:Branch=$BRANCH
+    
+  package-source-generators:
+    name: Publish Patterns.Util.SourceGenerators
+    runs-on: ubuntu-latest
+    needs: setup
+    
+    steps:
+    - name: Publish Patterns.Util.SourceGenerators
+      uses: matthewhancock/actions-patterns-publish-project@v1
+      with:
+        project: Patterns.Util.SourceGenerators
+        path-project: Patterns.Util.SourceGenerators
+  
+  package-mapping:
+    name: Publish Patterns.Util.Mapping
+    runs-on: ubuntu-latest
+    needs: setup
+    
+    steps:
+    - name: Publish Patterns.Util.Mapping
+      uses: matthewhancock/actions-patterns-publish-project@v1
+      with:
+        project: Patterns.Util.Mapping
+        path-project: Patterns.Util.Mapping
+        path-tests-unit: Tests\UnitTests\Patterns.Util.Mapping.UnitTests
