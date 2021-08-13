@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      commit-branch: ${{ steps.branch.outputs.branch }}
+      commit-branch: ${{ env.BRANCH }}
       commit-files: ${{ steps.files.outputs.all }}
           
     steps:
@@ -25,7 +25,6 @@ jobs:
       run: |
         FULL_BRANCH_PATH="${{ github.ref }}"
         echo "BRANCH=${FULL_BRANCH_PATH/refs\/heads\//}" >> $GITHUB_ENV
-        echo "::set-output name=branch::${{ env.BRANCH }}"
         
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -38,12 +37,6 @@ jobs:
     
     - name: Build
       run: dotnet build --configuration Release /p:Branch=$BRANCH
-      
-    - name: Echo
-      run: |
-        echo 'Files: ${{ steps.files.outputs.all }}'
-        echo 'Branch: ${{ steps.branch.outputs.branch }}'
-        
     
   package-source-generators:
     name: Publish Patterns.Util.SourceGenerators
