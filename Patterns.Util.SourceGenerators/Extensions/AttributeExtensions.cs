@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Patterns.Util.SourceGenerators.Extensions {
-    internal static class AttributeExtensions {
+    public static class AttributeExtensions {
         public static IEnumerable<AttributeSyntax> GetAttributeNodes(this IEnumerable<SyntaxNode> Nodes)
             => Nodes.Where(n => n.IsKind(SyntaxKind.Attribute)).OfType<AttributeSyntax>();
 
