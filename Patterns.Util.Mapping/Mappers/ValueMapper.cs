@@ -10,8 +10,6 @@ namespace Patterns.Util.Mapping.Mappers {
                 if (TargetValue != null) {
                     TargetSetter(Target, default);
                     return true;
-                } else {
-                    return false;
                 }
                 //}
             } else if (TargetValue == null) {
