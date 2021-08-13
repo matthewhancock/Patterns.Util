@@ -38,33 +38,21 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release /p:Branch=$BRANCH
     
-  package-source-generators:
-    name: Publish Patterns.Util.SourceGenerators
-    runs-on: ubuntu-latest
-    needs: setup
-    
-    steps:
     - name: Publish Patterns.Util.SourceGenerators
-      uses: matthewhancock/actions-patterns-publish-project@V.2
+      uses: matthewhancock/actions-patterns-publish-project@v.3
       with:
         project: Patterns.Util.SourceGenerators
         path-project: Patterns.Util.SourceGenerators
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ needs.setup.outputs.commit-branch }}
-        env-commit-files: ${{ needs.setup.outputs.commit-files }}
+        env-commit-branch: ${{ env.BRANCH }}
+        env-commit-files: ${{ steps.files.outputs.all }}
   
-  package-mapping:
-    name: Publish Patterns.Util.Mapping
-    runs-on: ubuntu-latest
-    needs: setup
-    
-    steps:
     - name: Publish Patterns.Util.Mapping
-      uses: matthewhancock/actions-patterns-publish-project@V.2
+      uses: matthewhancock/actions-patterns-publish-project@v.3
       with:
         project: Patterns.Util.Mapping
         path-project: Patterns.Util.Mapping
         path-tests-unit: Tests\UnitTests\Patterns.Util.Mapping.UnitTests
         nuget-apikey: ${{ secrets.NUGET }}
-        env-commit-branch: ${{ needs.setup.outputs.commit-branch }}
-        env-commit-files: ${{ needs.setup.outputs.commit-files }}
+        env-commit-branch: ${{ env.BRANCH }}
+        env-commit-files: ${{ steps.files.outputs.all }}
