@@ -44,12 +44,6 @@ jobs:
     needs: setup
     
     steps:
-      
-    - name: Echo
-      run: |
-        echo 'Files: ${{ needs.setup.outputs.commit-files }}'
-        echo 'Branch: ${{ needs.setup.outputs.commit-branch }}'
-    
     - name: Publish Patterns.Util.SourceGenerators
       uses: matthewhancock/actions-patterns-publish-project@v.1
       with:
