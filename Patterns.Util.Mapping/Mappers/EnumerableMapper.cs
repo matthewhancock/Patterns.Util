@@ -57,7 +57,6 @@ namespace Patterns.Util.Mapping.Mappers {
 
         public static bool MapEnumerable<TValue, TTarget>(IEnumerable<TValue> SourceValue, IEnumerable<TValue> TargetValue,
             TTarget Target, Action<TTarget, IEnumerable<TValue>> TargetSetter) {
-
             if (SourceValue == null) {
                 //if (!IgnoreNulls) {
                 if (TargetValue != null) {
