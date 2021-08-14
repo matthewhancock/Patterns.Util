@@ -39,7 +39,7 @@ jobs:
       run: dotnet build --configuration Release /p:Branch=$BRANCH
     
     - name: Publish Patterns.Util.SourceGenerators
-      uses: matthewhancock/actions-patterns-publish-project@v.4test
+      uses: matthewhancock/actions-patterns-publish-project@v.4test2
       continue-on-error: true
       with:
         project: Patterns.Util.SourceGenerators
@@ -49,7 +49,7 @@ jobs:
         env-commit-files: ${{ steps.files.outputs.all }}
   
     - name: Publish Patterns.Util.Mapping
-      uses: matthewhancock/actions-patterns-publish-project@v.4test
+      uses: matthewhancock/actions-patterns-publish-project@v.4test2
       continue-on-error: true
       with:
         project: Patterns.Util.Mapping
