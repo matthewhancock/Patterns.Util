@@ -18,8 +18,8 @@
     <!-- Variables -->
     <VersionMajor Condition=" '$(VersionMajor)' == '' ">0</VersionMajor>
     <VersionMinor Condition=" '$(VersionMinor)' == '' ">0</VersionMinor>
-    <VersionBuild Condition=" '$(VersionBuild)' == '' ">$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2020,1,1))).get_TotalDays())</VersionBuild>
-    <VersionRevision Condition=" '$(VersionRevision)' == '' ">$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</VersionRevision>
+    <VersionBuild Condition=" '$(VersionBuild)' == '' ">$([System.DateTime]::op_Subtraction($([System.DateTime]::get_UtcNow().get_Date()),$([System.DateTime]::new(2020,1,1))).get_TotalDays())</VersionBuild>
+    <VersionRevision Condition=" '$(VersionRevision)' == '' ">$([MSBuild]::Divide($([System.DateTime]::get_UtcNow().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</VersionRevision>
     <VersionBranch Condition=" '$(Branch)' != '' and '$(Branch)' != 'main' ">$([System.String]::Copy('$(Branch)').Replace('/','-').Replace('\','-').Replace('.','-'))</VersionBranch>
 
     <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</VersionPrefix>
